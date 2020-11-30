@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="12dp">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="horizontal">
+
+        <NumberPicker
+            android:id="@+id/np_year"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="12dp"
+            android:theme="@style/textNumberPicker" />
+
+        <NumberPicker
+            android:id="@+id/np_month"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="12dp"
+            android:theme="@style/textNumberPicker" />
+
+        <NumberPicker
+            android:id="@+id/np_day"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="12dp"
+            android:theme="@style/textNumberPicker" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:gravity="end"
+        android:orientation="horizontal"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp">
+
+        <com.zenoation.ksbutton.KSButton
+            android:id="@+id/btn_cancel"
+            style="@style/textButton"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:background="@color/gray2"
+            android:gravity="center"
+            android:text="취소"
+            android:textColor="@color/white"
+            app:cornerRadius="6dp" />
+
+        <com.zenoation.ksbutton.KSButton
+            android:id="@+id/btn_select"
+            style="@style/textButton"
+            android:layout_width="120dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="6dp"
+            android:background="@color/colorPrimary"
+            android:gravity="center"
+            android:text="선택"
+            android:textColor="@color/white"
+            app:cornerRadius="6dp" />
+    </LinearLayout>
+</LinearLayout>

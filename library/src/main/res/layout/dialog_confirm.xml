@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/fl_title"
+        layout="@layout/layout_dialog_header"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="15dp"
+        android:splitMotionEvents="false">
+
+        <TextView
+            android:id="@+id/tv_msg"
+            style="@style/textDialogBig"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="9dp"
+            android:layout_marginTop="9dp"
+            android:layout_marginRight="9dp"
+            android:layout_marginBottom="21dp"
+            android:gravity="center"
+            android:text="메세지" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginTop="9dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:splitMotionEvents="false">
+
+            <com.zenoation.ksbutton.KSButton
+                android:id="@+id/btn_cancel"
+                style="@style/textButton"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="4"
+                android:background="@color/gray2"
+                android:gravity="center"
+                android:text="@string/cancel"
+                android:textColor="@color/white"
+                android:textStyle="normal"
+                app:cornerRadius="5dp" />
+
+            <com.zenoation.ksbutton.KSButton
+                android:id="@+id/btn_confirm"
+                style="@style/textButton"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="9dp"
+                android:layout_weight="6"
+                android:background="@color/colorPrimary"
+                android:gravity="center"
+                android:text="@string/confirm"
+                android:textColor="@color/white"
+                android:textStyle="normal"
+                app:cornerRadius="5dp" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

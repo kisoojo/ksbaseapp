@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#000</color>
+
+    <color name="line">#d9d9d9</color>
+
+    <color name="text">#192038</color>
+    <color name="hint">#a9a9a9</color>
+
+    <color name="black">#000</color>
+    <color name="white">#FFF</color>
+
+    <color name="dark_grey1">#1f2020</color>
+    <color name="dark_grey2">#2A2A2A</color>
+    <color name="darkgray1">#363636</color>
+    <color name="darkgray3">#585858</color>
+    <color name="gray1">#747474</color>
+    <color name="gray1.5">#7f7f7f</color>
+    <color name="gray2">#a9a9a9</color>
+    <color name="gray3">#c9c9c9</color>
+    <color name="gray4">#d9d9d9</color>
+    <color name="gray5">#e9e9e9</color>
+    <color name="gray6">#f0f0f0</color>
+    <color name="gray7">#f9f9f9</color>
+
+    <color name="indicator_unselected">#c9c9c9c9</color>
+
+    <color name="transparent">#00000000</color>
+    <color name="trans_75">#bf000000</color>
+    <color name="trans_50">#a0000000</color>
+    <color name="transparent_dark_grey">#A0000000</color>
+
+    <color name="red">#ea4335</color>
+    <color name="reddark">#ba2b2b</color>
+    <color name="yellow">#fbc423</color>
+    <color name="yellowdark">#db9700</color>
+    <color name="blue">#4285f4</color>
+    <color name="bluedark">#3162c7</color>
+    <color name="green">#34a853</color>
+    <color name="greendark">#22741c</color>
+</resources>
