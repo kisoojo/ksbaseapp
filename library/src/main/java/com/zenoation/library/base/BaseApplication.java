@@ -21,7 +21,7 @@ public class BaseApplication extends MultiDexApplication {
 
     private final static String TAG = "MainApplication";
 
-    public final static String TEMP_PATH = Environment.getExternalStorageDirectory() + File.separator + "onvitplatform";
+    public final static String TEMP_PATH = Environment.getExternalStorageDirectory() + File.separator + "myapp";
 
     public static String mSimpleName;
 

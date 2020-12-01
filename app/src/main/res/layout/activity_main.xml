@@ -12,10 +12,33 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@color/black"
-        android:text="버튼"
+        android:text="팝업"
         android:textAllCaps="false"
         android:textColor="@color/white"
         app:cornerRadius="10dp" />
 
+
+    <com.zenoation.library.custom.KSButton
+        android:id="@+id/btn_webview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@color/blue"
+        android:text="웹뷰"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        app:cornerRadius="10dp" />
+
+
+    <com.zenoation.library.custom.KSButton
+        android:id="@+id/btn_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@color/blue"
+        android:text="이미지"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        app:cornerRadius="10dp" />
 
 </LinearLayout>

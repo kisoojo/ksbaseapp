@@ -129,8 +129,6 @@ public class Utils {
                 md.update(sIgnature.toByteArray());
                 keyhash = new String(Base64.encode(md.digest(), 0));
                 Log.d(TAG, "Key Hash : " + keyhash);
-                // DialogUtils.getInstance().showAlertDialog((Activity) context, keyhash);
-                // Log.i("OnvitPlatform", "Key Hash : " + keyhash);
             }
         } catch (PackageManager.NameNotFoundException e) {
             Log.e(TAG, e.getMessage());

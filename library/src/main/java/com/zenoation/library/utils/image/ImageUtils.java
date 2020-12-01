@@ -3,6 +3,7 @@ package com.zenoation.library.utils.image;
 import android.Manifest;
 import android.app.Activity;
 import android.content.ContentUris;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -21,6 +22,7 @@ import androidx.core.content.FileProvider;
 
 import com.zenoation.library.base.BaseApplication;
 import com.zenoation.library.listener.OnCompleteListener;
+import com.zenoation.library.listener.OnCompleteParamListener;
 import com.zenoation.library.utils.Utils;
 import com.zenoation.library.utils.permission.PermissionUtils;
 
@@ -51,7 +53,9 @@ public class ImageUtils {
     private String mStrCurrentPhotoPath;//실제 사진 파일 경로
     private String mStrImageCaptureName;//이미지 이름
 
-    private OnCompleteListener mOnCompleteListener;
+    private OnCompleteParamListener mOnCameraCompleteListener;
+    private OnCompleteParamListener mOnGalleryCompleteListener;
+    private OnCompleteParamListener mOnFileCompleteListener;
 
     //private static class LazyHolder {
     //    private static final ImageUtils INSTANCE = new ImageUtils();
@@ -75,6 +79,18 @@ public class ImageUtils {
     }
 
     private ImageUtils() {
+    }
+
+    public void setOnCameraCompleteListener(OnCompleteParamListener listener) {
+        mOnCameraCompleteListener = listener;
+    }
+
+    public void setOnGalleryCompleteListener(OnCompleteParamListener listener) {
+        mOnGalleryCompleteListener = listener;
+    }
+
+    public void setOnFileCompleteListener(OnCompleteParamListener listener) {
+        mOnFileCompleteListener = listener;
     }
 
     /**
@@ -289,7 +305,6 @@ public class ImageUtils {
         }
         mStrImageCaptureName = Utils.getInstance().getDatetimeString2() + ".jpg";
 
-        // File storageDir = new File(Environment.getExternalStorageDirectory().getAbsoluteFile() + "/onvitplatform/" + mStrImageCaptureName);
         File storageDir = new File(PHOTO_TEMP_PATH + File.separator + mStrImageCaptureName);
         mStrCurrentPhotoPath = storageDir.getAbsolutePath();
 
@@ -313,12 +328,12 @@ public class ImageUtils {
             String strPath = cursor.getString(column_data);
             String strTitle = cursor.getString(column_title);
 
-            setImageFile(context, strPath, strTitle);
+            setImageFile(context, CALL_GALLERY, strPath, strTitle);
             cursor.close();
         }
     }
 
-    public void setImageFile(Context context, String path, String name) {
+    public void setImageFile(Context context, int type, String path, String name) {
         path = TextUtils.isEmpty(path) ? mStrCurrentPhotoPath : path;
         name = TextUtils.isEmpty(name) ? mStrImageCaptureName : name;
         if (path == null) {
@@ -336,7 +351,26 @@ public class ImageUtils {
         }
         name = path.split("/")[path.split("/").length - 1];
 
+        ContentValues params = new ContentValues();
+        params.put("path", path);
+        params.put("name", name);
 
+        if (type == CALL_CAMERA) {
+            if (mOnCameraCompleteListener != null) {
+                mOnCameraCompleteListener.onComplete(params);
+                mOnCameraCompleteListener = null;
+            }
+        } else if (type == CALL_GALLERY) {
+            if (mOnGalleryCompleteListener != null) {
+                mOnGalleryCompleteListener.onComplete(params);
+                mOnGalleryCompleteListener = null;
+            }
+        } else if (type == CALL_FILE) {
+            if (mOnFileCompleteListener != null) {
+                mOnFileCompleteListener.onComplete(params);
+                mOnFileCompleteListener = null;
+            }
+        }
     }
 
 
