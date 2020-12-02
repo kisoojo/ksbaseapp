@@ -1083,7 +1083,7 @@ public class Utils {
      */
     public String getDatetimeString() {
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.KOREA);
-        return df.format(new Date(System.currentTimeMillis()));
+        return df.format(new Date());
     }
 
     /**
@@ -1091,7 +1091,15 @@ public class Utils {
      */
     public String getDatetimeString2() {
         SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmss", Locale.KOREA);
-        return df.format(new Date(System.currentTimeMillis()));
+        return df.format(new Date());
+    }
+
+    /**
+     * 날짜시간 문자열 반환
+     */
+    public String getDatetimeString3() {
+        SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmssSSSS", Locale.KOREA);
+        return df.format(new Date());
     }
 
     /**

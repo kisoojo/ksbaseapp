@@ -214,9 +214,9 @@ public class ImageUtils {
             int imgHeight = photo.getHeight();
             float ratio;
             if (imgWidth > imgHeight)
-                ratio = (float) imgWidth / 800;
+                ratio = (float) imgWidth / PHOTO_SIZE;
             else
-                ratio = (float) imgHeight / 800;
+                ratio = (float) imgHeight / PHOTO_SIZE;
 
             //최대값 보다 클 경우만 크기 조정
             photo = Bitmap.createScaledBitmap(photo, (ratio <= 1.0) ? imgWidth : (int) (imgWidth / ratio), (ratio <= 1.0) ? imgHeight : (int) (imgHeight / ratio), true);
