@@ -3,13 +3,16 @@ package com.zenoation.baseapp_sample;
 import android.content.ClipData;
 import android.content.ContentValues;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 
 import androidx.annotation.Nullable;
 
 import com.zenoation.library.base.BaseActivity;
 import com.zenoation.library.listener.OnCompleteParamListener;
+import com.zenoation.library.utils.image.Glide;
 import com.zenoation.library.utils.image.ImageUtils;
 import com.zenoation.library.webview.WebViewActivity;
 
@@ -77,6 +80,37 @@ public class MainActivity extends BaseActivity {
                         });
             }
         });
+
+        ImageView iv1 = findViewById(R.id.iv_image1);
+        ImageView iv2 = findViewById(R.id.iv_image2);
+        ImageView iv3 = findViewById(R.id.iv_image3);
+        ImageView iv4 = findViewById(R.id.iv_image4);
+        ImageView iv5 = findViewById(R.id.iv_image5);
+
+        OnCompleteParamListener listener = param -> {
+            String path = ((ContentValues) param).getAsString("path");
+            String name = ((ContentValues) param).getAsString("name");
+
+            Bitmap bitmapOrigin = ImageUtils.getInstance().safeDecodeBitmapFile(path);
+            Glide.getInstance().load(MainActivity.this, bitmapOrigin, iv1);
+
+            Bitmap bitmap = ImageUtils.getInstance().applyBrightness(bitmapOrigin, -50);
+            Glide.getInstance().load(MainActivity.this, bitmap, iv2);
+
+            bitmap = ImageUtils.getInstance().applyContrast(bitmapOrigin, 100);
+            Glide.getInstance().load(MainActivity.this, bitmap, iv3);
+
+            bitmap = ImageUtils.getInstance().applyContrast(bitmapOrigin, 100);
+            bitmap = ImageUtils.getInstance().applyBrightness(bitmap, -25);
+            Glide.getInstance().load(MainActivity.this, bitmap, iv4);
+
+            bitmap = ImageUtils.getInstance().applyContrast(bitmapOrigin, 100);
+            bitmap = ImageUtils.getInstance().applyBrightness(bitmap, -50);
+            Glide.getInstance().load(MainActivity.this, bitmap, iv5);
+        };
+
+        ImageUtils.getInstance().setOnGalleryCompleteListener(listener);
+        ImageUtils.getInstance().setOnCameraCompleteListener(listener);
     }
 
     @Override
