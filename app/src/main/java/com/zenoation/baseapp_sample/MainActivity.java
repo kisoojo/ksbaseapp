@@ -7,6 +7,7 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import androidx.annotation.Nullable;
 
@@ -81,32 +82,55 @@ public class MainActivity extends BaseActivity {
             }
         });
 
-        ImageView iv1 = findViewById(R.id.iv_image1);
-        ImageView iv2 = findViewById(R.id.iv_image2);
-        ImageView iv3 = findViewById(R.id.iv_image3);
-        ImageView iv4 = findViewById(R.id.iv_image4);
-        ImageView iv5 = findViewById(R.id.iv_image5);
-
+        LinearLayout llImage = findViewById(R.id.ll_image);
+        ImageView ivParent = findViewById(R.id.iv_image);
         OnCompleteParamListener listener = param -> {
             String path = ((ContentValues) param).getAsString("path");
             String name = ((ContentValues) param).getAsString("name");
 
+            ImageView iv = new ImageView(this);
+            iv.setLayoutParams(ivParent.getLayoutParams());
             Bitmap bitmapOrigin = ImageUtils.getInstance().safeDecodeBitmapFile(path);
-            Glide.getInstance().load(MainActivity.this, bitmapOrigin, iv1);
+            Glide.getInstance().load(MainActivity.this, bitmapOrigin, iv);
+            llImage.addView(iv);
 
-            Bitmap bitmap = ImageUtils.getInstance().applyBrightness(bitmapOrigin, -50);
-            Glide.getInstance().load(MainActivity.this, bitmap, iv2);
+            iv = new ImageView(this);
+            iv.setLayoutParams(ivParent.getLayoutParams());
+            Bitmap bitmap = ImageUtils.getInstance().applyBrightness(bitmapOrigin, 25);
+            Glide.getInstance().load(MainActivity.this, bitmap, iv);
+            llImage.addView(iv);
 
-            bitmap = ImageUtils.getInstance().applyContrast(bitmapOrigin, 100);
-            Glide.getInstance().load(MainActivity.this, bitmap, iv3);
+            iv = new ImageView(this);
+            iv.setLayoutParams(ivParent.getLayoutParams());
+            bitmap = ImageUtils.getInstance().applyBrightness(bitmapOrigin, 50);
+            Glide.getInstance().load(MainActivity.this, bitmap, iv);
+            llImage.addView(iv);
 
-            bitmap = ImageUtils.getInstance().applyContrast(bitmapOrigin, 100);
-            bitmap = ImageUtils.getInstance().applyBrightness(bitmap, -25);
-            Glide.getInstance().load(MainActivity.this, bitmap, iv4);
+            iv = new ImageView(this);
+            iv.setLayoutParams(ivParent.getLayoutParams());
+            bitmap = ImageUtils.getInstance().applyContrast(bitmapOrigin, 25);
+            Glide.getInstance().load(MainActivity.this, bitmap, iv);
+            llImage.addView(iv);
 
-            bitmap = ImageUtils.getInstance().applyContrast(bitmapOrigin, 100);
-            bitmap = ImageUtils.getInstance().applyBrightness(bitmap, -50);
-            Glide.getInstance().load(MainActivity.this, bitmap, iv5);
+            iv = new ImageView(this);
+            iv.setLayoutParams(ivParent.getLayoutParams());
+            bitmap = ImageUtils.getInstance().applyContrast(bitmapOrigin, 50);
+            Glide.getInstance().load(MainActivity.this, bitmap, iv);
+            llImage.addView(iv);
+
+            iv = new ImageView(this);
+            iv.setLayoutParams(ivParent.getLayoutParams());
+            bitmap = ImageUtils.getInstance().applyBrightness(bitmapOrigin, 25);
+            bitmap = ImageUtils.getInstance().applyContrast(bitmap, 25);
+            Glide.getInstance().load(MainActivity.this, bitmap, iv);
+            llImage.addView(iv);
+
+            iv = new ImageView(this);
+            iv.setLayoutParams(ivParent.getLayoutParams());
+            bitmap = ImageUtils.getInstance().applyBrightness(bitmapOrigin, -25);
+            bitmap = ImageUtils.getInstance().applyContrast(bitmap, 25);
+            Glide.getInstance().load(MainActivity.this, bitmap, iv);
+            llImage.addView(iv);
         };
 
         ImageUtils.getInstance().setOnGalleryCompleteListener(listener);
