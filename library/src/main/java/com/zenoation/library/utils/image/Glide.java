@@ -2,6 +2,7 @@ package com.zenoation.library.utils.image;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.widget.ImageView;
 
 import androidx.annotation.DrawableRes;
@@ -124,5 +125,9 @@ public class Glide {
 
     public void load(Context context, Bitmap bitmap, ImageView imageView) {
         com.bumptech.glide.Glide.with(context).load(bitmap).apply(OptionNoPalce()).into(imageView);
+    }
+
+    public void load(Context context, Uri uri, ImageView imageView) {
+        com.bumptech.glide.Glide.with(context).load(uri).apply(OptionNoPalce()).into(imageView);
     }
 }
