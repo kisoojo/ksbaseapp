@@ -446,6 +446,30 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
         mBaseUtils.startActivityForResult(mActivity, target, reqId, flag, params, anim);
     }
 
+    public void startActivityForResult(Class target, Fragment fragment, int reqId) {
+        mBaseUtils.startActivityForResult(mActivity, fragment, target, reqId, FLAG_DEFAULT, null, ANIM_NONE);
+    }
+
+    public void startActivityForResult(Class target, Fragment fragment, int reqId, ContentValues params) {
+        mBaseUtils.startActivityForResult(mActivity, fragment, target, reqId, FLAG_DEFAULT, params, ANIM_NONE);
+    }
+
+    public void startActivityForResult(Class target, Fragment fragment, int reqId, ContentValues params, int anim) {
+        mBaseUtils.startActivityForResult(mActivity, fragment, target, reqId, FLAG_DEFAULT, params, anim);
+    }
+
+    public void startActivityForResult(Class target, Fragment fragment, int reqId, int flag) {
+        mBaseUtils.startActivityForResult(mActivity, fragment, target, reqId, flag, null, ANIM_NONE);
+    }
+
+    public void startActivityForResult(Class target, Fragment fragment, int reqId, int flag, ContentValues params) {
+        mBaseUtils.startActivityForResult(mActivity, fragment, target, reqId, flag, params, ANIM_NONE);
+    }
+
+    public void startActivityForResult(Class target, Fragment fragment, int reqId, int flag, ContentValues params, int anim) {
+        mBaseUtils.startActivityForResult(mActivity, fragment, target, reqId, flag, params, anim);
+    }
+
 
     @Override
     public void startActivityForResult(Intent intent, int requestCode) {

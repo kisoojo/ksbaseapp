@@ -5,6 +5,7 @@ import android.content.ContentValues;
 import android.content.Intent;
 import android.os.Handler;
 
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 
@@ -157,6 +158,35 @@ public class BaseUtils {
         //다이얼로그 있는 상태에서 바로 액티비티 실행할 경우 애니메이션 무시되는 현상 때문에 딜레이 적용
         new Handler().postDelayed(() -> {
             activity.startActivityForResult(intent, reqId);
+            setAnim(activity, animType);
+        }, 100);
+
+        new Handler().postDelayed(() -> mDoingStartActivityLoopCnt = 0,300);
+    }
+
+    public void startActivityForResult(Activity activity, Fragment fragment, Class target, int reqId, int flag, ContentValues params, int animType) {
+        Intent intent = new Intent(activity, target);
+        if (flag == FLAG_DEFAULT) {
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NO_USER_ACTION);
+        } else if (flag == FLAG_CLEAR_SINGLE) {
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_NO_USER_ACTION);
+        } else if (flag != FLAG_NONE) {
+            intent.setFlags(flag | Intent.FLAG_ACTIVITY_NO_USER_ACTION);
+        }
+        if (params != null) {
+            intent.putExtra(PARAMS_KEY, params);
+        }
+        if (animType >= ANIM_NO_ANIM && animType <= ANIM_FADE) {
+            intent.putExtra(ANIM_KEY, animType);
+        }
+
+        if (mDoingStartActivityLoopCnt > 0) {
+            return;
+        }
+
+        //다이얼로그 있는 상태에서 바로 액티비티 실행할 경우 애니메이션 무시되는 현상 때문에 딜레이 적용
+        new Handler().postDelayed(() -> {
+            fragment.startActivityForResult(intent, reqId);
             setAnim(activity, animType);
         }, 100);
 
