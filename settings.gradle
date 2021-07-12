@@ -1,3 +1,3 @@
-include ':library'
+include ':KSBaseApp'
 include ':app'
 rootProject.name = "BaseApp_sample"

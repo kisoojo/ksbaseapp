@@ -11,11 +11,11 @@ import android.widget.LinearLayout;
 
 import androidx.annotation.Nullable;
 
-import com.zenoation.library.base.BaseActivity;
-import com.zenoation.library.listener.OnCompleteParamListener;
-import com.zenoation.library.utils.image.Glide;
-import com.zenoation.library.utils.image.ImageUtils;
-import com.zenoation.library.webview.WebViewActivity;
+import com.zenoation.ksbaseapp.base.BaseActivity;
+import com.zenoation.ksbaseapp.listener.OnCompleteParamListener;
+import com.zenoation.ksbaseapp.utils.image.Glide;
+import com.zenoation.ksbaseapp.utils.image.ImageUtils;
+import com.zenoation.ksbaseapp.webview.WebViewActivity;
 
 /**
  * Created by kisoojo on 2020.11.27

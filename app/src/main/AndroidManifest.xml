@@ -21,7 +21,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="com.zenoation.library.webview.WebViewActivity" />
+        <activity android:name="com.zenoation.ksbaseapp.webview.WebViewActivity" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
