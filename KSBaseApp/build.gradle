@@ -54,14 +54,14 @@ dependencies {
     // multidex
     implementation 'androidx.multidex:multidex:2.0.1'
 
-    // ksbutton
-    implementation 'com.github.kisoojo:ksbutton:1.2.0'
-
     // ted permission
     implementation 'io.github.ParkSangGwon:tedpermission-normal:3.4.2'
 
     // glide
     implementation 'com.github.bumptech.glide:glide:4.11.0'
+
+    // ksbutton
+    api 'com.github.kisoojo:ksbutton:1.2.0'
 }
 
 afterEvaluate {
