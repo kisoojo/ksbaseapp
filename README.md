@@ -19,15 +19,24 @@ __Step 2.__ Add the dependency
 
 __Step 3.__ Add the below code at AndroidManifest.xml
 
-    <provider
-        android:name="androidx.core.content.FileProvider"
-        android:authorities={PACKAGE_NAME}
-        android:exported="false"
-        android:grantUriPermissions="true">
-        <meta-data
-            android:name="android.support.FILE_PROVIDER_PATHS"
-            android:resource="@xml/provider_paths" />
-    </provider>
+    <application
+        android:name={APPLICATION_NAME}
+        ...
+        tools:replace="android:name"
+
+        ...
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities={PACKAGE_NAME}
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
+        </provider>
+
+    </application>
 
 
 __How to use__
