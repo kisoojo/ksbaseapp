@@ -55,8 +55,6 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.gun0912.tedpermission.BuildConfig;
-
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -78,6 +76,8 @@ import java.util.regex.Pattern;
 
 import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
 import static com.zenoation.ksbaseapp.base.BaseApplication.TEMP_PATH;
+
+import androidx.multidex.BuildConfig;
 
 
 /**

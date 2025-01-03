@@ -29,7 +29,7 @@ import static android.content.Context.DOWNLOAD_SERVICE;
  */
 public class WebView extends android.webkit.WebView {
 
-    private Context mContext;
+    private final Context mContext;
 
     public WebView(Context context) {
         super(context);
@@ -45,12 +45,6 @@ public class WebView extends android.webkit.WebView {
 
     public WebView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        this.mContext = context;
-        setWebView(this);
-    }
-
-    public WebView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        super(context, attrs, defStyleAttr, defStyleRes);
         this.mContext = context;
         setWebView(this);
     }
@@ -72,15 +66,10 @@ public class WebView extends android.webkit.WebView {
         webView.getSettings().setSupportMultipleWindows(true);
         webView.getSettings().setCacheMode(WebSettings.LOAD_NO_CACHE);
         webView.getSettings().setDomStorageEnabled(true);
-        webView.getSettings().setAppCacheEnabled(true);
         webView.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
         webView.getSettings().setLoadsImagesAutomatically(true);
         webView.getSettings().setRenderPriority(WebSettings.RenderPriority.HIGH);
-        if (Build.VERSION.SDK_INT >= 19) {
-            webView.setLayerType(View.LAYER_TYPE_HARDWARE, null);
-        } else {
-            webView.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
-        }
+        webView.setLayerType(View.LAYER_TYPE_HARDWARE, null);
         webView.getSettings().setUseWideViewPort(true);
         webView.getSettings().setTextZoom(100);
         // webView.addJavascriptInterface(new WebViewInterface(mContext), "WebViewInterface");
@@ -88,39 +77,36 @@ public class WebView extends android.webkit.WebView {
         webView.setVerticalScrollBarEnabled(false);
         webView.setWebViewClient(webViewClient);
         webView.setWebChromeClient(webChromeClient);
-        webView.setDownloadListener(new DownloadListener() {
-            @Override
-            public void onDownloadStart(String url, String userAgent, String contentDisposition, String mimetype, long contentLength) {
-                try {
+        webView.setDownloadListener((url, userAgent, contentDisposition, mimetype, contentLength) -> {
+            try {
 
-                    // if (webViewClient.getCookie() == null) {
-                    //     Utils.getInstance().showToast(mContext, "파일 다운로드 실패");
-                    //     return;
-                    // }
+                // if (webViewClient.getCookie() == null) {
+                //     Utils.getInstance().showToast(mContext, "파일 다운로드 실패");
+                //     return;
+                // }
 
-                    DownloadManager.Request request = new DownloadManager.Request(Uri.parse(url));
-                    request.setMimeType(mimetype);
-                    request.addRequestHeader("cookie", webViewClient.getCookie());
-                    request.addRequestHeader("User-Agent", userAgent);
-                    request.setDescription("Downloading file");
-                    String fileName = URLDecoder.decode(URLUtil.guessFileName(url, contentDisposition, mimetype), "EUC-KR").replace(";", "");
-                    request.setTitle(fileName);
-                    request.allowScanningByMediaScanner();
-                    request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
-                    request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, fileName);
-                    DownloadManager dm = (DownloadManager) mContext.getSystemService(DOWNLOAD_SERVICE);
-                    dm.enqueue(request);
-                    Utils.getInstance().showToast(mContext, "다운로드를 시작합니다..");
-                } catch (UnsupportedEncodingException e) {
-                    if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.Q) {
-                        return;
-                    }
+                DownloadManager.Request request = new DownloadManager.Request(Uri.parse(url));
+                request.setMimeType(mimetype);
+                request.addRequestHeader("cookie", webViewClient.getCookie());
+                request.addRequestHeader("User-Agent", userAgent);
+                request.setDescription("Downloading file");
+                String fileName = URLDecoder.decode(URLUtil.guessFileName(url, contentDisposition, mimetype), "EUC-KR").replace(";", "");
+                request.setTitle(fileName);
+                request.allowScanningByMediaScanner();
+                request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+                request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, fileName);
+                DownloadManager dm = (DownloadManager) mContext.getSystemService(DOWNLOAD_SERVICE);
+                dm.enqueue(request);
+                Utils.getInstance().showToast(mContext, "다운로드를 시작합니다..");
+            } catch (UnsupportedEncodingException e) {
+                if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.Q) {
+                    return;
+                }
 
-                    if (ContextCompat.checkSelfPermission(mContext, android.Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-                        // Should we show an explanation?
-                        Utils.getInstance().showToast(mContext, "첨부파일 다운로드를 위해\n동의가 필요합니다.");
-                        ActivityCompat.requestPermissions((Activity) mContext, new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE}, 110);
-                    }
+                if (ContextCompat.checkSelfPermission(mContext, android.Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                    // Should we show an explanation?
+                    Utils.getInstance().showToast(mContext, "첨부파일 다운로드를 위해\n동의가 필요합니다.");
+                    ActivityCompat.requestPermissions((Activity) mContext, new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE}, 110);
                 }
             }
         });

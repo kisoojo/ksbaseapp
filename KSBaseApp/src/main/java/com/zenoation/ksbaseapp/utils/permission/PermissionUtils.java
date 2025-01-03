@@ -7,19 +7,16 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
-import android.os.Environment;
 import android.provider.Settings;
 import android.widget.Toast;
 
-import androidx.annotation.RequiresApi;
 import androidx.core.content.ContextCompat;
 
-
 import com.gun0912.tedpermission.PermissionListener;
-import com.gun0912.tedpermission.TedPermission;
-import com.zenoation.ksbaseapp.listener.OnCompleteListener;
+import com.gun0912.tedpermission.normal.TedPermission;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class PermissionUtils {
 
@@ -56,7 +53,7 @@ public class PermissionUtils {
 
     // @RequiresApi(api = Build.VERSION_CODES.R)
     private String[] removePermissionWriteExternalStorage(String[] permissions) {
-        ArrayList<String> permissionsArray = new ArrayList();
+        ArrayList<String> permissionsArray = new ArrayList<>();
         for (String p : permissions) {
             if (Manifest.permission.WRITE_EXTERNAL_STORAGE.equals(p)) {
                 continue;
@@ -67,10 +64,28 @@ public class PermissionUtils {
         return permissionsArray.toArray(permissionsNew);
     }
 
+    private String[] removePermissionReadExternalStorage(String[] permissions) {
+        ArrayList<String> permissionsArray = new ArrayList<>();
+        for (String p : permissions) {
+            if (Manifest.permission.READ_EXTERNAL_STORAGE.equals(p)) {
+                continue;
+            }
+            permissionsArray.add(p);
+        }
+        permissionsArray.add(Manifest.permission.READ_MEDIA_IMAGES);
+        permissionsArray.add(Manifest.permission.READ_MEDIA_AUDIO);
+        permissionsArray.add(Manifest.permission.READ_MEDIA_VIDEO);
+        String[] permissionsNew = new String[permissionsArray.size()];
+        return permissionsArray.toArray(permissionsNew);
+    }
+
     public void requestPermissions(final Activity activity, String[] permissions,
                                    final OnPermissionGrantedListener permissionGrantedListener, final boolean bIsBack) {
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.Q) {
             permissions = removePermissionWriteExternalStorage(permissions);
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            permissions = removePermissionReadExternalStorage(permissions);
         }
         PermissionListener permissionListener = new PermissionListener() {
             @Override
@@ -81,7 +96,7 @@ public class PermissionUtils {
             }
 
             @Override
-            public void onPermissionDenied(ArrayList<String> deniedPermissions) {
+            public void onPermissionDenied(List<String> deniedPermissions) {
                 try {
                     Toast.makeText(activity, "[설정] > [권한] 에서 권한을 허용을 하셔야 합니다.", Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
@@ -96,9 +111,11 @@ public class PermissionUtils {
                 if (bIsBack) {
                     activity.onBackPressed();
                 }
+
             }
         };
-        TedPermission.with(activity)
+
+        TedPermission.create()
                 .setPermissionListener(permissionListener)
                 .setPermissions(permissions)
                 .check();
@@ -133,7 +150,7 @@ public class PermissionUtils {
             }
 
             @Override
-            public void onPermissionDenied(ArrayList<String> deniedPermissions) {
+            public void onPermissionDenied(List<String> deniedPermissions) {
                 if (permissionDeniedListener != null) {
                     permissionDeniedListener.onPermissionDenied();
                 }
@@ -149,7 +166,7 @@ public class PermissionUtils {
         //     }
         // }
 
-        TedPermission.with(activity)
+        TedPermission.create()
                 .setPermissionListener(permissionListener)
                 .setPermissions(permissions)
                 .check();

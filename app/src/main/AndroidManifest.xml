@@ -13,7 +13,9 @@
         android:theme="@style/Theme.BaseApp_sample"
         tools:replace="android:name">
 
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -21,7 +23,9 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="com.zenoation.ksbaseapp.webview.WebViewActivity" />
+        <activity
+            android:name="com.zenoation.ksbaseapp.webview.WebViewActivity"
+            android:exported="false" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
