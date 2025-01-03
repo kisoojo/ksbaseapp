@@ -1,3 +1,5 @@
+VERSION 1.3.0
+
 __Step 1.__ Add the JitPack repository to your build file
 
     allprojects {
