@@ -76,9 +76,9 @@ dependencies {
     api 'com.github.kisoojo:ksbutton:1.2.0'
 
     implementation 'androidx.core:core-ktx:1.13.1'
-    implementation 'io.reactivex.rxjava2:rxjava:2.2.21'
-    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
-    implementation 'io.reactivex.rxjava2:rxkotlin:2.4.0'
+    api 'io.reactivex.rxjava2:rxjava:2.2.21'
+    api 'io.reactivex.rxjava2:rxandroid:2.1.1'
+    api 'io.reactivex.rxjava2:rxkotlin:2.4.0'
 
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.17.2'
     implementation 'com.google.code.gson:gson:2.10.1'
