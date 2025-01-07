@@ -1,4 +1,4 @@
-VERSION 1.3.0
+VERSION 1.4.0
 
 __Step 1.__ Add the JitPack repository to your build file
 
@@ -40,8 +40,25 @@ __Step 3.__ Add the below code at AndroidManifest.xml
 
 
 __How to use__
+    
+    1. Application
+    
+    public class MyApplication extends BaseApplication {
 
-    1. ImageUtils
+        @Override
+        public void onCreate() {
+            super.onCreate();
+        }
+    }
+
+
+    2. Activity
+
+    public class MainActivity extends BaseActivity
+            
+
+
+    3. ImageUtils
 
     ImageUtils.getInstance().setOnCameraCompleteListener(OnCompleteParamListener)
     ImageUtils.getInstance().setOnGalleryCompleteListener(OnCompleteParamListener)
@@ -71,7 +88,7 @@ __How to use__
     }
     
     
-    2. WebView
+    4. WebView
     
     ContentValues params = new ContentValues();
     params.put("title", "타이틀");
@@ -80,7 +97,38 @@ __How to use__
     startActivity(WebViewActivity.class, params);
     
     
-    3. DialogUtils
+    5. DialogUtils
     
     showAlertDialog(Activity activity, String text)
     showConfirmDialog(Activity activity, String text, @NonNull View.OnClickListener confirmListener)
+
+    
+    6. MVVM
+
+    * use kotlin
+    * use databinding
+
+    [View]
+
+        [layout]
+    
+        <layout>
+            <variable
+                name="data" // use variable name "data" mandatory
+                type="com.zenoation.ksbaseapp.kt.base.BaseViewModel" />
+            </variable>
+        </layout>
+
+
+        [activity]
+    
+        class MyActivity(
+            override val layoutId: Int = R.layout.activity_mvvvm,   // layout resource id
+            override val viewModelClass: Class<MvvmViewModel> = MvvmViewModel::class.java   // viewmodel class
+        ) : BaseMvvmActivity<ActivityMvvvmBinding, MvvmViewModel>() // binding, viewmodel
+    
+        [ViewModel]
+
+        class MvvmViewModel(application: Application) : BaseViewModel(application)
+
+    
