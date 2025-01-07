@@ -83,6 +83,24 @@ afterEvaluate {
                         developerConnection.set("scm:git:ssh://github.com/kisoojo/ksbaseapp.git")
                         url.set("https://github.com/kisoojo/ksbaseapp")
                     }
+
+                    withXml {
+                        def dependenciesNode = asNode().appendNode('dependencies')
+
+                        dependenciesNode.appendNode('dependency').apply {
+                            appendNode('groupId', 'androidx.multidex')
+                            appendNode('artifactId', 'multidex')
+                            appendNode('version', '2.0.1')
+                            appendNode('scope', 'api')
+                        }
+
+                        dependenciesNode.appendNode('dependency').apply {
+                            appendNode('groupId', 'com.github.kisoojo')
+                            appendNode('artifactId', 'ksbutton')
+                            appendNode('version', '1.2.0')
+                            appendNode('scope', 'api')
+                        }
+                    }
                 }
             }
         }
