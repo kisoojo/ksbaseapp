@@ -58,14 +58,10 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.11.0'
 
     // multidex
-    api ('androidx.multidex:multidex:2.0.1') {
-        transitive = true
-    }
+    api 'androidx.multidex:multidex:2.0.1'
 
     // ksbutton
-    api ('com.github.kisoojo:ksbutton:1.2.0') {
-        transitive = true
-    }
+    api 'com.github.kisoojo:ksbutton:1.2.0'
 }
 
 afterEvaluate {
