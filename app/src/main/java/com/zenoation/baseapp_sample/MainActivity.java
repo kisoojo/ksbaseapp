@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 
 import androidx.annotation.Nullable;
 
+import com.zenoation.baseapp_sample.mvvm.MvvmActivity;
 import com.zenoation.ksbaseapp.base.BaseActivity;
 import com.zenoation.ksbaseapp.listener.OnCompleteParamListener;
 import com.zenoation.ksbaseapp.utils.image.Glide;
@@ -135,6 +136,14 @@ public class MainActivity extends BaseActivity {
 
         ImageUtils.getInstance().setOnGalleryCompleteListener(listener);
         ImageUtils.getInstance().setOnCameraCompleteListener(listener);
+
+        findViewById(R.id.btn_mvvm).setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                startActivity(MvvmActivity.class);
+            }
+        });
     }
 
     @Override

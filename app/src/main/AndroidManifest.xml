@@ -27,6 +27,9 @@
             android:name="com.zenoation.ksbaseapp.webview.WebViewActivity"
             android:exported="false" />
 
+        <activity android:name=".mvvm.MvvmActivity" />
+        <activity android:name=".mvvm.MvvmActivity2" />
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.zenoation.baseapp_sample"

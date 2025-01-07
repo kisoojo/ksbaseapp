@@ -31,7 +31,6 @@
                     android:textColor="@color/white"
                     app:cornerRadius="10dp" />
 
-
                 <com.zenoation.ksbutton.KSButton
                     android:id="@+id/btn_webview"
                     android:layout_width="wrap_content"
@@ -43,7 +42,6 @@
                     android:textColor="@color/white"
                     app:cornerRadius="10dp" />
 
-
                 <com.zenoation.ksbutton.KSButton
                     android:id="@+id/btn_image"
                     android:layout_width="wrap_content"
@@ -51,6 +49,17 @@
                     android:layout_marginLeft="10dp"
                     android:background="@color/green"
                     android:text="이미지"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    app:cornerRadius="10dp" />
+
+                <com.zenoation.ksbutton.KSButton
+                    android:id="@+id/btn_mvvm"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:background="@color/red"
+                    android:text="mvvm"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
                     app:cornerRadius="10dp" />
