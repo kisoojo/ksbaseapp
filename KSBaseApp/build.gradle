@@ -87,19 +87,17 @@ afterEvaluate {
                     withXml {
                         def dependenciesNode = asNode().appendNode('dependencies')
 
-                        dependenciesNode.appendNode('dependency').apply {
-                            appendNode('groupId', 'androidx.multidex')
-                            appendNode('artifactId', 'multidex')
-                            appendNode('version', '2.0.1')
-                            appendNode('scope', 'compile')
-                        }
+                        def multidexDependency = dependenciesNode.appendNode('dependency')
+                        multidexDependency.appendNode('groupId', 'androidx.multidex')
+                        multidexDependency.appendNode('artifactId', 'multidex')
+                        multidexDependency.appendNode('version', '2.0.1')
+                        multidexDependency.appendNode('scope', 'compile')
 
-                        dependenciesNode.appendNode('dependency').apply {
-                            appendNode('groupId', 'com.github.kisoojo')
-                            appendNode('artifactId', 'ksbutton')
-                            appendNode('version', '1.2.0')
-                            appendNode('scope', 'compile')
-                        }
+                        def ksbuttonDependency = dependenciesNode.appendNode('dependency')
+                        ksbuttonDependency.appendNode('groupId', 'com.github.kisoojo')
+                        ksbuttonDependency.appendNode('artifactId', 'ksbutton')
+                        ksbuttonDependency.appendNode('version', '1.2.0')
+                        ksbuttonDependency.appendNode('scope', 'compile')
                     }
                 }
             }
