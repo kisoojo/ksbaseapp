@@ -13,7 +13,7 @@ __Step 1.__ Add the JitPack repository to your build file
 __Step 2.__ Add the dependency    
     
     dependencies {
-        implementation 'com.github.kisoojo:ksbaseapp:1.0'
+        implementation 'com.github.kisoojo:ksbaseapp:1.4'
     }
 
 

@@ -64,10 +64,10 @@ dependencies {
     implementation 'com.google.android.material:material:1.12.0'
 
     // ted permission
-    implementation 'io.github.ParkSangGwon:tedpermission-normal:3.4.2'
+    api 'io.github.ParkSangGwon:tedpermission-normal:3.4.2'
 
     // glide
-    implementation 'com.github.bumptech.glide:glide:4.11.0'
+    api 'com.github.bumptech.glide:glide:4.11.0'
 
     // multidex
     api 'androidx.multidex:multidex:2.0.1'
@@ -79,8 +79,8 @@ dependencies {
     api 'io.reactivex.rxjava2:rxandroid:2.1.1'
     api 'io.reactivex.rxjava2:rxkotlin:2.4.0'
 
-    implementation 'com.fasterxml.jackson.core:jackson-databind:2.17.2'
-    implementation 'com.google.code.gson:gson:2.10.1'
+    api 'com.fasterxml.jackson.core:jackson-databind:2.17.2'
+    api 'com.google.code.gson:gson:2.10.1'
 
     compileOnly 'org.projectlombok:lombok:1.18.34'
     kapt 'org.projectlombok:lombok:1.18.34'
