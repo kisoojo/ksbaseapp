@@ -23,7 +23,7 @@
         tools:targetApi="32">
 
         <activity
-            android:name="com.zenoation.ksbaseapp.webview.WebViewActivity"
+            android:name=".webview.WebViewActivity"
             android:exported="false" />
     </application>
 

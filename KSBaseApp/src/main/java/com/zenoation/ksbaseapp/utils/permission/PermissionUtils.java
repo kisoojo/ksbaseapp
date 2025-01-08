@@ -10,6 +10,7 @@ import android.os.Build;
 import android.provider.Settings;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
 import androidx.core.content.ContextCompat;
 
 import com.gun0912.tedpermission.PermissionListener;
@@ -51,7 +52,6 @@ public class PermissionUtils {
         void onPermissionDenied();
     }
 
-    // @RequiresApi(api = Build.VERSION_CODES.R)
     private String[] removePermissionWriteExternalStorage(String[] permissions) {
         ArrayList<String> permissionsArray = new ArrayList<>();
         for (String p : permissions) {
@@ -65,16 +65,20 @@ public class PermissionUtils {
     }
 
     private String[] removePermissionReadExternalStorage(String[] permissions) {
+        boolean isInclude = false;
         ArrayList<String> permissionsArray = new ArrayList<>();
         for (String p : permissions) {
             if (Manifest.permission.READ_EXTERNAL_STORAGE.equals(p)) {
+                isInclude = true;
                 continue;
             }
             permissionsArray.add(p);
         }
-        permissionsArray.add(Manifest.permission.READ_MEDIA_IMAGES);
-        permissionsArray.add(Manifest.permission.READ_MEDIA_AUDIO);
-        permissionsArray.add(Manifest.permission.READ_MEDIA_VIDEO);
+        if (isInclude) {
+            permissionsArray.add(Manifest.permission.READ_MEDIA_IMAGES);
+            permissionsArray.add(Manifest.permission.READ_MEDIA_AUDIO);
+            permissionsArray.add(Manifest.permission.READ_MEDIA_VIDEO);
+        }
         String[] permissionsNew = new String[permissionsArray.size()];
         return permissionsArray.toArray(permissionsNew);
     }
