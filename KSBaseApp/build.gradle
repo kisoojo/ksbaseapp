@@ -132,6 +132,18 @@ afterEvaluate {
                         rxkotlinDependency.appendNode('artifactId', 'rxkotlin')
                         rxkotlinDependency.appendNode('version', '2.4.0')
                         rxkotlinDependency.appendNode('scope', 'compile')
+
+                        def jacksonDatabindDependency = dependenciesNode.appendNode('dependency')
+                        jacksonDatabindDependency.appendNode('groupId', 'com.fasterxml.jackson.core')
+                        jacksonDatabindDependency.appendNode('artifactId', 'jackson-databind')
+                        jacksonDatabindDependency.appendNode('version', '2.17.2')
+                        jacksonDatabindDependency.appendNode('scope', 'compile')
+
+                        def gsonDependency = dependenciesNode.appendNode('dependency')
+                        gsonDependency.appendNode('groupId', 'com.google.code.gson')
+                        gsonDependency.appendNode('artifactId', 'gson')
+                        gsonDependency.appendNode('version', '2.10.1')
+                        gsonDependency.appendNode('scope', 'compile')
                     }
                 }
             }

@@ -22,6 +22,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="32">
 
+        <activity
+            android:name="com.zenoation.ksbaseapp.webview.WebViewActivity"
+            android:exported="false" />
     </application>
 
     <!-- API 30 (Android 30) 대응 -->

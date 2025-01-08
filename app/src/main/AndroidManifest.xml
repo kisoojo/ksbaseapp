@@ -23,10 +23,6 @@
             </intent-filter>
         </activity>
 
-        <activity
-            android:name="com.zenoation.ksbaseapp.webview.WebViewActivity"
-            android:exported="false" />
-
         <activity android:name=".mvvm.MvvmActivity" />
         <activity android:name=".mvvm.MvvmActivity2" />
 
