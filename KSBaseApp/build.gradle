@@ -63,14 +63,14 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.7.0'
     implementation 'com.google.android.material:material:1.12.0'
 
+    // multidex
+    api 'androidx.multidex:multidex:2.0.1'
+
     // ted permission
     api 'io.github.ParkSangGwon:tedpermission-normal:3.4.2'
 
     // glide
     api 'com.github.bumptech.glide:glide:4.11.0'
-
-    // multidex
-    api 'androidx.multidex:multidex:2.0.1'
 
     // ksbutton
     api 'com.github.kisoojo:ksbutton:1.2.0'
@@ -108,6 +108,18 @@ afterEvaluate {
 
                     withXml {
                         def dependenciesNode = asNode().appendNode('dependencies')
+
+                        def tedDependency = dependenciesNode.appendNode('dependency')
+                        tedDependency.appendNode('groupId', 'io.github.ParkSangGwon')
+                        tedDependency.appendNode('artifactId', 'tedpermission-normal')
+                        tedDependency.appendNode('version', '3.4.2')
+                        tedDependency.appendNode('scope', 'compile')
+
+                        def glideDependency = dependenciesNode.appendNode('dependency')
+                        glideDependency.appendNode('groupId', 'com.github.bumptech.glide')
+                        glideDependency.appendNode('artifactId', 'glide')
+                        glideDependency.appendNode('version', '4.11.0')
+                        glideDependency.appendNode('scope', 'compile')
 
                         def multidexDependency = dependenciesNode.appendNode('dependency')
                         multidexDependency.appendNode('groupId', 'androidx.multidex')
