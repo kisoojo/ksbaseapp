@@ -76,7 +76,6 @@ dependencies {
     api 'com.github.kisoojo:ksbutton:1.2.0'
 
     implementation 'androidx.core:core-ktx:1.13.1'
-    api 'io.reactivex.rxjava2:rxjava:2.2.21'
     api 'io.reactivex.rxjava2:rxandroid:2.1.1'
     api 'io.reactivex.rxjava2:rxkotlin:2.4.0'
 
@@ -121,6 +120,18 @@ afterEvaluate {
                         ksbuttonDependency.appendNode('artifactId', 'ksbutton')
                         ksbuttonDependency.appendNode('version', '1.2.0')
                         ksbuttonDependency.appendNode('scope', 'compile')
+
+                        def rxandroidDependency = dependenciesNode.appendNode('dependency')
+                        rxandroidDependency.appendNode('groupId', 'io.reactivex.rxjava2')
+                        rxandroidDependency.appendNode('artifactId', 'rxandroid')
+                        rxandroidDependency.appendNode('version', '2.1.1')
+                        rxandroidDependency.appendNode('scope', 'compile')
+
+                        def rxkotlinDependency = dependenciesNode.appendNode('dependency')
+                        rxkotlinDependency.appendNode('groupId', 'io.reactivex.rxjava2')
+                        rxkotlinDependency.appendNode('artifactId', 'rxkotlin')
+                        rxkotlinDependency.appendNode('version', '2.4.0')
+                        rxkotlinDependency.appendNode('scope', 'compile')
                     }
                 }
             }
