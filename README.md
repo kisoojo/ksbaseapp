@@ -23,19 +23,6 @@ __Step 3.__ Add the below code at AndroidManifest.xml
         android:name={APPLICATION_NAME}
         ...
         tools:replace="android:name"
-
-        ...
-
-        <provider
-            android:name="androidx.core.content.FileProvider"
-            android:authorities={PACKAGE_NAME}
-            android:exported="false"
-            android:grantUriPermissions="true">
-            <meta-data
-                android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/provider_paths" />
-        </provider>
-
     </application>
 
 
@@ -55,7 +42,6 @@ __How to use__
     2. Activity
 
     public class MainActivity extends BaseActivity
-            
 
 
     3. ImageUtils
@@ -127,7 +113,8 @@ __How to use__
             override val viewModelClass: Class<MvvmViewModel> = MvvmViewModel::class.java   // viewmodel class
         ) : BaseMvvmActivity<ActivityMvvvmBinding, MvvmViewModel>() // binding, viewmodel
     
-        [ViewModel]
+
+    [ViewModel]
 
         class MvvmViewModel(application: Application) : BaseViewModel(application)
 
