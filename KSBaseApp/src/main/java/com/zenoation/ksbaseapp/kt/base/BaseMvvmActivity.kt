@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -27,13 +28,12 @@ import com.zenoation.ksbaseapp.kt.rx.RxUtil.Companion.INTENT_PARAMS
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.addTo
 
-abstract class BaseMvvmActivity<VB : ViewDataBinding, VM : BaseViewModel> : BaseActivity() {
+abstract class BaseMvvmActivity<VB : ViewDataBinding, VM : BaseViewModel>(
+    private val bindingClass: Class<VB>,
+    private val viewModelClass: Class<VM>
+) : BaseActivity() {
 
     private val TAG: String = this::class.java.simpleName
-
-    @get:LayoutRes
-    protected abstract val layoutId: Int
-    protected abstract val viewModelClass: Class<VM>?
 
     protected lateinit var binder: VB
     protected lateinit var viewModel: VM
@@ -44,19 +44,16 @@ abstract class BaseMvvmActivity<VB : ViewDataBinding, VM : BaseViewModel> : Base
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        viewModelClass?.let {
-            viewModel = ViewModelProvider(this)[it]
-        } ?: Log.d(TAG, "viewModelClass is null")
+        val method = bindingClass.getMethod("inflate", LayoutInflater::class.java)
+        @Suppress("UNCHECKED_CAST")
+        binder = method.invoke(null, layoutInflater) as VB
+        setContentView(binder.root)
 
-        binder = DataBindingUtil.setContentView<VB>(this, layoutId).apply {
-            lifecycleOwner = this@BaseMvvmActivity
-            if (viewModelClass == null) {
-                Log.d(TAG, "viewModelClass is null")
-            } else {
-                viewModel = ViewModelProvider(this@BaseMvvmActivity)[viewModelClass!!]
-                setVariable(BR.data, viewModel)
-            }
-        }
+        // ViewModel 초기화
+        viewModel = ViewModelProvider(this).get(viewModelClass)
+
+        binder.lifecycleOwner = this
+        binder.setVariable(BR.data, viewModel)
 
         this.enableEdgeToEdge()
         ViewCompat.setOnApplyWindowInsetsListener(binder.root) { v: View, insets: WindowInsetsCompat ->

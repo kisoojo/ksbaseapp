@@ -7,10 +7,10 @@ import com.zenoation.ksbaseapp.kt.base.BaseMvvmActivity
 import com.zenoation.ksbaseapp.kt.common.GlobalVariable.Companion.RxEvents
 import io.reactivex.rxkotlin.addTo
 
-class MvvmActivity(
-    override val layoutId: Int = R.layout.activity_mvvvm,
-    override val viewModelClass: Class<MvvmViewModel> = MvvmViewModel::class.java
-) : BaseMvvmActivity<ActivityMvvvmBinding, MvvmViewModel>() {
+class MvvmActivity : BaseMvvmActivity<ActivityMvvvmBinding, MvvmViewModel>(
+    ActivityMvvvmBinding::class.java,
+    MvvmViewModel::class.java,
+) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

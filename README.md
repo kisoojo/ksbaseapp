@@ -108,10 +108,10 @@ __How to use__
 
         [activity]
     
-        class MyActivity(
-            override val layoutId: Int = R.layout.activity_mvvvm,   // layout resource id
-            override val viewModelClass: Class<MvvmViewModel> = MvvmViewModel::class.java   // viewmodel class
-        ) : BaseMvvmActivity<ActivityMvvvmBinding, MvvmViewModel>() // binding, viewmodel
+        class MyActivity : BaseMvvmActivity<ActivityMvvvmBinding, MvvmViewModel>( // binding, viewmodel
+            ActivityMvvvmBinding::class.java,   // binding class
+            MvvmViewModel::class.java           // viewmodel class
+        )
     
 
     [ViewModel]
